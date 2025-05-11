@@ -27,7 +27,6 @@
 - 🖼️ Home Page with Hero Slider, Organization Logos, and Info Sections
 - ⚠️ ভুল পাসওয়ার্ড/ইনভ্যালিড লগিন হলে Error Toast
 - 🔐 Firebase Environment Key secured via `.env` variables
-- ✅ GitHub এ ১০টি+ মীনিংফুল কমিট
 
 ---
 
@@ -48,8 +47,8 @@
 
 ## 📝 Author & Contributions
 
-👤 Developed by: [Nadim Mahmud Shuvo]  
-🔗 GitHub: [Your GitHub Profile](https://github.com/nadimshuvo)
+👤 Developed by: Nadim Mahmud Shuvo (Frontend Developer)
+🔗 GitHub: [GitHub Profile](https://github.com/nadimshuvo)
 
 ---
 

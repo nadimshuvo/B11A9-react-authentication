@@ -1,31 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.myBtn {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+  padding: 13px 30px;
+  outline: none;
+  transition: background-color 0.2s ease-out;
+}
+
+a.active {
+  color: #34D399;
+}
+
+.swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 9999px !important;
+  background-color: #38BDF8 !important;
+  opacity: 0.5 !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 16px !important;
+  height: 16px !important;
+  background-color: #FFB300 !important;
+  opacity: 1 !important;
+  transform: scale(1.10) !important;
+}
+
+
 @import "tailwindcss";
-@plugin "daisyui";
-/* 
-Namespace	Utility classes
---color-*	Color utilities like bg-red-500, text-sky-300, and many more
---font-*	Font family utilities like font-sans
---text-*	Font size utilities like text-xl
---font-weight-*	Font weight utilities like font-bold
---tracking-*	Letter spacing utilities like tracking-wide
---leading-*	Line height utilities like leading-tight
---breakpoint-*	Responsive breakpoint variants like sm:*
---container-*	Container query variants like @sm:* and size utilities like max-w-md
---spacing-*	Spacing and sizing utilities like px-4, max-h-16, and many more
---radius-*	Border radius utilities like rounded-sm
---shadow-*	Box shadow utilities like shadow-md
---inset-shadow-*	Inset box shadow utilities like inset-shadow-xs
---drop-shadow-*	Drop shadow filter utilities like drop-shadow-md
---blur-*	Blur filter utilities like blur-md
---perspective-*	Perspective utilities like perspective-near
---aspect-*	Aspect ratio utilities like aspect-video
---ease-*	Transition timing function utilities like ease-out
---animate-*	Animation utilities like animate-spin */
+@plugin "daisyui" {
+  themes: false;
+}
+
 @theme {
-   --color-primary: var(--color-red-500);
-  --color-secondary: var(--color-blue-500);
-  --color-white: #fff;
-  --color-purple: #3f3cbb;
-  --color-midnight: #121063;
-  --color-tahiti: #3ab7bf;
-  --color-bermuda: #78dcca;
+  --color-primary: #031320;
+  --color-secondary: #38BDF8;
+  --color-accent: #34D399;
+  --color-green: #006241;
+  --color-yellow: #FFB300;
+  --color-warrning: #EA4335;
 }
