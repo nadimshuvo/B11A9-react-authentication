@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../assets/billLagbe-sm.jpg";
 import navLinks from "../utilis/navLinks";
 import { Link } from "react-router";
+import AuthContext from "../provider/AuthContext";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+
   return (
     <header className="bg-primary">
       <div className="navbar shadow-sm container mx-auto h-24 px-2.5">
@@ -32,7 +36,10 @@ const Navbar = () => {
             >
               {navLinks}
               <div className="navbar-end justify-between gap-7 lg:hidden">
-                <Link to="/register" className="btn btn-accent rounded-full bg-yellow">
+                <Link
+                  to="/register"
+                  className="btn btn-accent rounded-full bg-yellow"
+                >
                   Register
                 </Link>
                 <Link
@@ -49,17 +56,65 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal gap-5">{navLinks}</ul>
         </div>
-        <div className="navbar-end gap-2.5 max-lg:hidden">
-          <Link to="/register" className="myBtn rounded-full bg-yellow">
-            Register
-          </Link>
-          <Link
-            to="/login"
-            className="myBtn rounded-full border border-accent hover:bg-accent/30"
-          >
-            Login
-          </Link>
-        </div>
+        {/* Navbar End */}
+        {user ? (
+          <div className="navbar-end shadow-sm">
+            <div className="flex gap-2">
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      src={user.photoURL}
+                    />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-primary rounded-xl z-1 mt-9 w-52 p-5 shadow font-bold text-white "
+                >
+                  <li>
+                    <a className="justify-between cursor-not-allowed text-accent">{user.email}</a>
+                  </li>
+                  <li>
+                    <a className="justify-between cursor-not-allowed">
+                      My Balance :<span className="badge text-yellow">&#2547; 10,000</span>
+                    </a>
+                  </li>
+                  <li className="hover:text-accent hover:font-black">
+                   <Link to="/profile">Profile</Link>
+                  </li>
+                  <li className="hover:text-accent hover:font-black">
+                   <Link to="/bills">My Bills</Link>
+                  </li>
+                  <li className="hover:text-accent hover:font-black">
+                    <a onClick={() => logOut()}>Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="navbar-end gap-2.5 max-lg:hidden">
+            <Link
+              to="/register"
+              className="myBtn rounded-full bg-yellow animate-pulse"
+            >
+              Register
+            </Link>
+            <Link
+              to="/login"
+              className="myBtn rounded-full border border-accent hover:bg-accent/30"
+            >
+              Login
+            </Link>
+          </div>
+        )}
+        {/* // Navbar End */}
         <div className="navbar-end gap-2.5 lg:hidden">
           <img className="w-24 h-24" src={logo} alt="logo" />
         </div>

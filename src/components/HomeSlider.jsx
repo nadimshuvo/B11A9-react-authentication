@@ -26,7 +26,7 @@ const HomeSlider = () => {
   ];
 
   return (
-    <div className="w-full h-[800px]">
+    <div className="w-full h-[calc(100vh-97px)]">
       <Swiper
         modules={[Pagination, Autoplay]}
         spaceBetween={20}

@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Bills from "../pages/Bills";
 import Profile from "../pages/Profile";
 import HomeLayout from "../layouts/HomeLayout";
+import PrivateRoute from "../provider/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -12,8 +13,8 @@ const router = createBrowserRouter([
     element: <Home />,
     children: [
       { index: true, Component: HomeLayout },
-      { path: "bills", Component: Bills },
-      { path: "profile", Component: Profile }
+      { path: "bills", element: <PrivateRoute><Bills></Bills></PrivateRoute> },
+      { path: "profile", element: <PrivateRoute><Profile></Profile></PrivateRoute> }
     ]
   },
   {
