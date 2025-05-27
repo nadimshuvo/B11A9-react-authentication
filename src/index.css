@@ -49,4 +49,24 @@ a.active {
   --color-green: #006241;
   --color-yellow: #FFB300;
   --color-warrning: #EA4335;
+
+  --animate-vibrate: vibrate .4s ease-in-out;
+  @keyframes vibrate {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-5px);
+    }
+    40% {
+      transform: translateX(5px);
+    }
+    60% {
+      transform: translateX(-5px);
+    }
+    80% {
+      transform: translateX(5px);
+    }
+  }
 }

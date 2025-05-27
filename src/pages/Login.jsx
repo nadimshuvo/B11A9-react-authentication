@@ -1,26 +1,62 @@
 import { useContext, useState } from "react";
 import { useNavigate, Link, useLocation } from "react-router";
 import AuthContext from "../provider/AuthContext";
+import swal from "sweetalert";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { signInWithEmailPassword, setUser } = useContext(AuthContext);
+  const { signInWithEmailPassword, setUser, signInwithGoogle } =
+    useContext(AuthContext);
+
+  const handleLoginWithGoogle = async () => {
+    try {
+      await signInwithGoogle()
+        .then((userCredential) => {
+          const newUser = userCredential.user;
+          swal("Sign in !", "You have successfully signed in !", "success");
+          setUser(newUser);
+          navigate(`${location.state ? location.state : "/"}`);
+        })
+        .catch((e) => {
+          console.log(e);
+          swal("Error", "Try Again ! Please", "error", {
+            buttons: [false],
+          });
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 2000);
+        });
+    } catch {
+      swal("Error", "Failed To Sign In with Google", "error", {
+        buttons: [false],
+      });
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 2300);
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       // Firebase auth logic - sign in
-      signInWithEmailPassword(email, password).then((userCredential) => {
-        console.log("Succeccfully Signed In !", userCredential);
-        console.log(location);
-        setUser(userCredential.user);
-        navigate(`${location.state ? location.state : "/"}`)
-      });
-      navigate("/");
+      await signInWithEmailPassword(email, password)
+        .then((userCredential) => {
+          swal("Sign in !", "You have successfully signed in !", "success");
+          setUser(userCredential.user);
+          navigate(`${location.state ? location.state : "/"}`);
+        })
+        .catch(() => {
+          setPasswordError("Invalid User/Password ! Try Again");
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 2500);
+        });
     } catch (error) {
       alert("Login failed: " + error.message);
     }
@@ -49,6 +85,18 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full input input-bordered focus:ring-2 focus:ring-primary focus:rounded-xs"
           />
+          <p
+            className={`text-red-500 ml-3.5 ${
+              passwordError ? "animate-vibrate" : ""
+            }`}
+          >
+            {passwordError}
+          </p>
+
+          <p className="font-bold text-xs text-right cursor-help hover:underline">
+            Forgot Password?
+          </p>
+
           {/* Email */}
           <button
             type="submit"
@@ -83,7 +131,10 @@ const Login = () => {
         </div>
         {/* google button - login */}
         <div className="mt-4">
-          <button className="btn bg-white w-full text-black border-[#e5e5e5] rounded-full">
+          <button
+            onClick={() => handleLoginWithGoogle()}
+            className="btn bg-white w-full text-black border-[#e5e5e5] rounded-full"
+          >
             <svg
               aria-label="Google logo"
               width="16"

@@ -1,0 +1,34 @@
+[
+	{
+		"id": 1,
+		"bill_type" : "electricity",
+		"icon": "https://i.ibb.co/4nSCnsGG/desco-icon.webp",
+		"organization" : "DESCO",
+		"amount" : 1890,
+		"due_date": "2025-07-22"
+	},
+	{
+		"id": 2,
+		"bill_type" : "gas",
+		"icon": "https://i.ibb.co/LzJyQwrQ/titas.png",
+		"organization" : "TITAS GAS",
+		"amount" : 1488,
+		"due_date": "2025-06-28"
+	},
+	{
+		"id": 3,
+		"bill_type" : "water",
+		"icon": "https://i.ibb.co/kgQ1WqD7/dhaka-washa.jpg",
+		"organization" : "WASA",
+		"amount" : 1000,
+		"due_date": "2025-03-28"
+	},
+	{
+		"id": 4,
+		"bill_type" : "internet",
+		"icon": "https://i.ibb.co/cXCX9DjT/amber-it.jpg",
+		"organization" : "AMBER IT",
+		"amount" : 800,
+		"due_date": "2025-03-28"
+	}	
+]

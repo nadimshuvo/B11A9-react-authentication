@@ -3,10 +3,12 @@ import logo from "../assets/billLagbe-sm.jpg";
 import navLinks from "../utilis/navLinks";
 import { Link } from "react-router";
 import AuthContext from "../provider/AuthContext";
+import avatar from "../assets/hacker.png"
+import Loading from "../components/Loading";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+  const { balance, user, logOut} = useContext(AuthContext);
+  // useEffect(()=> {}, [user]);
 
   return (
     <header className="bg-primary">
@@ -66,30 +68,34 @@ const Navbar = () => {
                   role="button"
                   className="btn btn-ghost btn-circle avatar"
                 >
-                  <div className="w-10 rounded-full">
-                    <img
-                      alt="Tailwind CSS Navbar component"
-                      src={user.photoURL}
-                    />
+                  <div className="w-10 rounded-full">                   
+                      <img
+                        alt="User Avatar"
+                        src={user.photoURL || avatar}
+                        className="w-10 h-10 rounded-full"
+                      />                   
                   </div>
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-primary rounded-xl z-1 mt-9 w-52 p-5 shadow font-bold text-white "
+                  className="menu menu-sm dropdown-content bg-primary rounded-xl z-1 mt-9 min-w-52 w-auto p-5 shadow font-bold text-white "
                 >
                   <li>
-                    <a className="justify-between cursor-not-allowed text-accent">{user.email}</a>
+                    <a className="justify-between cursor-not-allowed text-secondary">
+                      {user.email}
+                    </a>
                   </li>
                   <li>
                     <a className="justify-between cursor-not-allowed">
-                      My Balance :<span className="badge text-yellow">&#2547; 10,000</span>
+                      My Balance :
+                      <span className="badge text-yellow">&#2547; {balance}</span>
                     </a>
                   </li>
                   <li className="hover:text-accent hover:font-black">
-                   <Link to="/profile">Profile</Link>
+                    <Link to="/profile">Profile</Link>
                   </li>
                   <li className="hover:text-accent hover:font-black">
-                   <Link to="/bills">My Bills</Link>
+                    <Link to="/bills">My Bills</Link>
                   </li>
                   <li className="hover:text-accent hover:font-black">
                     <a onClick={() => logOut()}>Logout</a>

@@ -28,7 +28,7 @@ const items = [
   {
     icon: "/src/assets/secure-payment.png",
     title: "সিকিউর পেমেন্ট",
-    desc: "তোমার সব লেনদেন ১০০% নিরাপদ",
+    desc: "আপনার সব লেনদেন ১০০% নিরাপদ",
   },
   {
     icon: "/src/assets/service.png",
@@ -43,7 +43,7 @@ const items = [
   {
     icon: "/src/assets/bill-tracking.png",
     title: "বিল ট্র্যাকিং",
-    desc: "তোমার সব বিলের হিসাব এক জায়গায়",
+    desc: "আপনার সব বিলের হিসাব এক জায়গায়",
   },
 ];
 

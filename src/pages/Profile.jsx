@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router";
 import AuthContext from "../provider/AuthContext";
+import avatar from "../assets/hacker.png";
 
 const Profile = () => {
   const [form, setForm] = useState({
@@ -10,7 +11,6 @@ const Profile = () => {
     job: "",
   });
   const { updateUser, setUser, user } = useContext(AuthContext);
-  console.log(user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,12 +33,13 @@ const Profile = () => {
       <div className="group">
         <img
           className="w-auto h-auto rounded-full"
-          src={user.photoURL}
+          src={user.photoURL || avatar}
           alt="Profile Picture"
         />
       </div>
 
       <h2 className="font-extrabold text-2xl">{user.displayName}</h2>
+      <h2 className="font-extrabold text-accent text-2xl">{user.email}</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <input

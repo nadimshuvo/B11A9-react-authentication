@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router";
 import AuthContext from "../provider/AuthContext";
+import swal from "sweetalert";
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -9,22 +10,51 @@ const Register = () => {
     password: "",
     photoURL: "",
   });
-  const { createUserWithEmailPassword, updateUser, setUser } =
+  const [passwordError, setPasswordError] = useState("");
+  const { createUserWithEmailPassword, updateUser, setUser, signInwithGoogle } =
     useContext(AuthContext);
   const navigate = useNavigate();
+
+  const handleRegisterWithGoogle = async () => {
+    try {
+      await signInwithGoogle()
+        .then((userCredential) => {
+          const newUser = userCredential.user;
+          swal("Sign Up", "You have successfully signed up !", "success");
+          setUser(newUser);
+          navigate("/");
+        })
+        .catch((e) => {
+          console.log(e);
+          swal("Error", "Try Again ! Please", "error", {
+            buttons: [false],
+          });
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 2000);
+        });
+    } catch {
+      swal("Error", "Failed To Sign Un with Google", "error", {
+        buttons: [false],
+      });
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 2300);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password, photoURL } = form;
-    // const passwordValid = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password);
-    const passwordValid = true;
-    if (!passwordValid)
-      return alert(
+    const passwordValid = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password);
+    if (!passwordValid) {
+      setPasswordError(
         "Password must have 1 uppercase, 1 lowercase & be 6+ characters long."
       );
+      return;
+    }
 
     try {
-      // Firebase createUser //
       createUserWithEmailPassword(email, password).then((userCredential) => {
         const user = userCredential.user;
         updateUser({ displayName: name, photoURL: photoURL })
@@ -32,10 +62,11 @@ const Register = () => {
             setUser({ ...user, displayName: name, photoURL: photoURL });
           })
           .catch((e) => console.error(e));
+        swal("Sign Up", "You have successfully signed up !", "success");
       });
       navigate("/");
-    } catch (error) {
-      alert("Registration failed: " + error.message);
+    } catch {
+      swal("Error", "Registration failed !", "error");
     }
   };
 
@@ -77,6 +108,13 @@ const Register = () => {
             onChange={(e) => setForm({ ...form, password: e.target.value })}
             className="w-full input input-bordered focus:ring-2 focus:ring-primary focus:rounded-xs"
           />
+          <p
+            className={`text-red-500 ml-3.5 ${
+              passwordError ? "animate-vibrate" : ""
+            }`}
+          >
+            {passwordError}
+          </p>
           <button
             type="submit"
             className="btn bg-primary w-full text-white border-[#e5e5e5] rounded-xs"
@@ -92,7 +130,10 @@ const Register = () => {
         </div>
         {/* google button - login */}
         <div className="mt-4">
-          <button className="btn bg-white w-full text-black border-[#e5e5e5] rounded-full">
+          <button
+            onClick={() => handleRegisterWithGoogle()}
+            className="btn bg-white w-full text-black border-[#e5e5e5] rounded-full"
+          >
             <svg
               aria-label="Google logo"
               width="16"
@@ -119,12 +160,17 @@ const Register = () => {
                   d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
                 ></path>
               </g>
-            </svg> 
+            </svg>
             Continue with Google
           </button>
         </div>
       </div>
-      <Link to="/" className="btn btn-accent rounded-full text-green hover:text-white">Back To Home</Link>
+      <Link
+        to="/"
+        className="btn btn-accent rounded-full text-green hover:text-white"
+      >
+        Back To Home
+      </Link>
     </div>
   );
 };
