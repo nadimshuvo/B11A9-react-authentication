@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import logo from "../assets/billLagbe-sm.jpg";
 import navLinks from "../utilis/navLinks";
 import { Link } from "react-router";
@@ -8,7 +8,9 @@ import Loading from "../components/Loading";
 
 const Navbar = () => {
   const { balance, user, logOut} = useContext(AuthContext);
-  // useEffect(()=> {}, [user]);
+  useEffect(()=> {
+    console.log(user)
+  }, [user]);
 
   return (
     <header className="bg-primary">
@@ -71,7 +73,7 @@ const Navbar = () => {
                   <div className="w-10 rounded-full">                   
                       <img
                         alt="User Avatar"
-                        src={user.photoURL || avatar}
+                        src={`${user?.photoURL || avatar}`}
                         className="w-10 h-10 rounded-full"
                       />                   
                   </div>
