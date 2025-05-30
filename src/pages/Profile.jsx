@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import AuthContext from "../provider/AuthContext";
 import avatar from "../assets/hacker.png";
+import swal from "sweetalert";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -21,6 +23,12 @@ const Profile = () => {
         .then(() => {
           setUser({ ...user, displayName: name, photoURL: photoURL });
           setForm({ name: "", email: "", photoURL: "", job: "" });
+          swal(
+            "Updated",
+            "You have successfully updated your info !",
+            "success"
+          );
+          navigate("/");
         })
         .catch((e) => console.error(e));
     } catch (error) {
@@ -63,7 +71,12 @@ const Profile = () => {
           Update
         </button>
       </form>
-      <Link to="/" className="btn btn-accent rounded-full text-primary hover:text-white">Back To Home</Link>
+      <Link
+        to="/"
+        className="btn btn-accent rounded-full text-primary hover:text-white"
+      >
+        Back To Home
+      </Link>
     </section>
   );
 };
