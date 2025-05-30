@@ -26,7 +26,7 @@ const Profile = () => {
           swal(
             "Updated",
             "You have successfully updated your info !",
-            "success"
+            "success",
           );
           navigate("/");
         })
@@ -37,43 +37,43 @@ const Profile = () => {
   };
 
   return (
-    <section className="text-center flex flex-col gap-10 items-center justify-center my-20 relative">
+    <section className="relative my-20 flex flex-col items-center justify-center gap-10 text-center">
       <div className="group">
         <img
-          className="w-auto h-auto rounded-full"
+          className="h-auto w-auto rounded-full"
           src={user.photoURL || avatar}
           alt="Profile Picture"
         />
       </div>
 
-      <h2 className="font-extrabold text-2xl">{user.displayName}</h2>
-      <h2 className="font-extrabold text-accent text-2xl">{user.email}</h2>
+      <h2 className="text-2xl font-extrabold">{user.displayName}</h2>
+      <h2 className="text-accent text-2xl font-extrabold">{user.email}</h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 px-2.5">
         <input
           type="text"
           placeholder="Change Name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className="w-full input input-bordered focus:ring-2 focus:ring-accent focus:rounded-xs"
+          className="input input-bordered focus:ring-accent w-full focus:rounded-xs focus:ring-2"
         />
         <input
           type="text"
           placeholder="Photo URL"
           value={form.photoURL}
           onChange={(e) => setForm({ ...form, photoURL: e.target.value })}
-          className="w-full input input-bordered focus:ring-2 focus:ring-accent focus:rounded-xs"
+          className="input input-bordered focus:ring-accent w-full focus:rounded-xs focus:ring-2"
         />
         <button
           type="submit"
-          className="btn bg-primary w-full text-yellow border-[#e5e5e5] rounded-xs mt-10"
+          className="btn bg-primary text-yellow mt-10 w-full rounded-xs border-[#e5e5e5]"
         >
           Update
         </button>
       </form>
       <Link
         to="/"
-        className="btn btn-accent rounded-full text-primary hover:text-white"
+        className="btn btn-accent text-primary rounded-full hover:text-white"
       >
         Back To Home
       </Link>

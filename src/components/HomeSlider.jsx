@@ -7,26 +7,23 @@ const HomeSlider = () => {
   const slides = [
     {
       id: 1,
-      image:
-        "https://i.ibb.co.com/Zzrgcw5q/DESKO.png",
+      image: "https://i.ibb.co.com/Zzrgcw5q/DESKO.png",
       title: "Pay Your Bills Easily : DESCO",
     },
     {
       id: 2,
-      image:
-        "https://i.ibb.co.com/pBcSwtHQ/NESCO.png",
+      image: "https://i.ibb.co.com/pBcSwtHQ/NESCO.png",
       title: "Secure & Fast Payment : NESCO",
     },
     {
       id: 3,
-      image:
-        "https://i.ibb.co.com/0Rj3F0nc/WASA.png",
+      image: "https://i.ibb.co.com/0Rj3F0nc/WASA.png",
       title: "All Utilities in One Place : WASA",
     },
   ];
 
   return (
-    <div className="w-full h-[calc(100vh-97px)]">
+    <div className="h-[calc(100vh-97px)] w-full">
       <Swiper
         modules={[Pagination, Autoplay]}
         spaceBetween={20}
@@ -34,7 +31,7 @@ const HomeSlider = () => {
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
         loop={true}
-        className="shadow-md h-full"
+        className="h-full shadow-md"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
@@ -42,9 +39,9 @@ const HomeSlider = () => {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="w-full h-full object-cover"
+                className="h-full w-full object-cover"
               />
-              <div className="absolute bottom-0 bg-primary bg-opacity-40 text-white w-full p-4 text-xl font-semibold">
+              <div className="bg-primary bg-opacity-40 absolute bottom-0 w-full p-4 text-xl font-semibold text-white max-lg:p-10 max-lg:text-center">
                 {slide.title}
               </div>
             </div>

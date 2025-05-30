@@ -63,9 +63,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-primary px-10 gap-10">
-      <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center">
+    <div className="bg-primary flex min-h-screen flex-col items-center justify-center gap-10 px-2.5 min-sm:px-10">
+      <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-lg">
+        <h2 className="mb-6 text-center text-2xl font-bold max-sm:text-xl">
           🔐 Login to Your Account
         </h2>
         <form onSubmit={handleLogin} className="space-y-4">
@@ -75,7 +75,7 @@ const Login = () => {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full input input-bordered focus:ring-2 focus:ring-primary focus:rounded-xs"
+            className="input input-bordered focus:ring-primary w-full focus:rounded-xs focus:ring-2"
           />
           <input
             type="password"
@@ -83,24 +83,24 @@ const Login = () => {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full input input-bordered focus:ring-2 focus:ring-primary focus:rounded-xs"
+            className="input input-bordered focus:ring-primary w-full focus:rounded-xs focus:ring-2"
           />
           <p
-            className={`text-red-500 ml-3.5 ${
+            className={`ml-3.5 text-red-500 ${
               passwordError ? "animate-vibrate" : ""
             }`}
           >
             {passwordError}
           </p>
 
-          <p className="font-bold text-xs text-right cursor-help hover:underline">
+          <p className="cursor-help text-right text-xs font-bold hover:underline">
             Forgot Password?
           </p>
 
           {/* Email */}
           <button
             type="submit"
-            className="btn bg-primary w-full text-white border-[#e5e5e5] rounded-xs"
+            className="btn bg-primary w-full rounded-xs border-[#e5e5e5] text-white"
           >
             <svg
               aria-label="Email icon"
@@ -133,7 +133,7 @@ const Login = () => {
         <div className="mt-4">
           <button
             onClick={() => handleLoginWithGoogle()}
-            className="btn bg-white w-full text-black border-[#e5e5e5] rounded-full"
+            className="btn w-full rounded-full border-[#e5e5e5] bg-white text-black"
           >
             <svg
               aria-label="Google logo"
@@ -168,7 +168,7 @@ const Login = () => {
       </div>
       <Link
         to="/"
-        className="btn btn-accent rounded-full text-green hover:text-white"
+        className="btn btn-accent text-green rounded-full hover:text-white"
       >
         Back To Home
       </Link>

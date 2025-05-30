@@ -1,4 +1,5 @@
 import React from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 const container = {
@@ -49,13 +50,13 @@ const items = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="mt-20 py-60 bg-gray-100">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-15">
+    <section className="mt-20 bg-gray-100 py-60">
+      <div className="mx-auto max-w-6xl px-4">
+        <h2 className="mb-15 text-center text-3xl font-bold">
           আমাদের সার্ভিস সুবিধা
         </h2>
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -65,14 +66,14 @@ const WhyChooseUs = () => {
             <motion.div
               key={idx}
               variants={cardVariants}
-              className="p-10 bg-white rounded-xl shadow-2xl text-center hover:scale-105 hover:shadow-primary transition-all duration-300"
+              className="hover:shadow-primary rounded-xl bg-white p-10 text-center shadow-2xl transition-all duration-300 hover:scale-105"
             >
               <img
                 src={item.icon}
                 alt={item.title}
                 className="mx-auto mb-5 w-14"
               />
-              <h4 className="font-semibold mb-3 text-lg">{item.title}</h4>
+              <h4 className="mb-3 text-lg font-semibold">{item.title}</h4>
               <p className="text-sm text-gray-600">{item.desc}</p>
             </motion.div>
           ))}
