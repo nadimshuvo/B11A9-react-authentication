@@ -7,16 +7,16 @@ import swal from "sweetalert";
 const SingleBillDetails = () => {
   const navigate = useNavigate();
   const bill = useLoaderData();
-  const {balance,setBalance } = useContext(AuthContext);  
-  
+  const { balance, setBalance } = useContext(AuthContext);
+
   const [billData, setBillData] = useState({
     ...bill,
     paid: false,
   });
-  
+
   useEffect(() => {
     const paidStatus = localStorage.getItem(`bill-paid-${bill.id}`);
-    
+
     if (paidStatus) {
       setBillData((prev) => ({
         ...prev,
@@ -26,38 +26,42 @@ const SingleBillDetails = () => {
   }, [bill.id]);
 
   const handlePayBill = () => {
-    swal("Paid", `You have successfully paid the ${billData.bill_type} Bill to ${billData.organization} !`, "success");
+    swal(
+      "Paid",
+      `You have successfully paid the ${billData.bill_type} Bill to ${billData.organization} !`,
+      "success",
+    );
     setBalance((prev) => prev - billData.amount);
     setBillData((prev) => ({
       ...prev,
       paid: true,
     }));
     localStorage.setItem(`bill-paid-${billData.id}`, "true");
-    navigate('/bills')
+    navigate("/bills");
   };
-  
+
   const isInsufficient = balance < billData.amount;
-  
+
   return (
-    <div className="single-bill border shadow-2xl border-yellow/20 rounded-2xl flex gap-10 items-center justify-between p-20 my-20 bg-white">
+    <div className="single-bill border-yellow/20 my-20 flex items-center justify-between gap-10 rounded-2xl border bg-white p-20 shadow-2xl max-md:mx-2.5 max-md:flex-col max-md:p-5 max-md:text-center">
       <div className="relative">
         <img
           src={billData.icon}
           alt="desco Icon"
-          className="border border-yellow/25 rounded-2xl w-full h-fit object-cover overflow-hidden transition-transform duration-500"
+          className="border-yellow/25 h-fit w-full overflow-hidden rounded-2xl border object-cover transition-transform duration-500"
         />
-        <p className="btn btn-ghost absolute right-3 bottom-3 italic font-bold text-white bg-yellow rounded-xl">
+        <p className="btn btn-ghost bg-yellow absolute right-3 bottom-3 rounded-xl font-bold text-white italic">
           <img src={billIcon} className="w-7" alt="Bill Icon" />
           {billData.bill_type}
         </p>
       </div>
-      <div className="max-w-200 mx-auto space-y-5">
-        <h3 className="font-bold text-3xl text-green">
+      <div className="mx-auto max-w-200 space-y-5">
+        <h3 className="text-green text-3xl font-bold">
           {billData.organization}
         </h3>
         <p>
           Bill Type :{" "}
-          <span className="italic font-bold text-accent">
+          <span className="text-accent font-bold italic">
             {billData.bill_type}
           </span>{" "}
           Bill
@@ -67,18 +71,24 @@ const SingleBillDetails = () => {
           <span className="text-yellow font-black">{billData.amount}</span>/-
         </p>
         <p className="text-warrning">Due Date: {billData.due_date}</p>
-        <p className="text-green-700 font-semibold">
+        <p className="font-semibold text-green-700">
           Status: {billData.paid ? "Paid" : "Unpaid"}
         </p>
 
         <button
           onClick={handlePayBill}
           disabled={billData.paid}
-          className={`btn btn-primary text-accent rounded-full transition-transform duration-300 px-20 ${
-            billData.paid || isInsufficient ? "bg-gray-500 cursor-not-allowed" : "hover:scale-110"
+          className={`btn btn-primary text-accent rounded-full px-20 transition-transform duration-300 max-xl:px-10 ${
+            billData.paid || isInsufficient
+              ? "border-accent/15 cursor-not-allowed border-2 bg-gray-700"
+              : "hover:scale-110"
           }`}
         >
-          {billData.paid ? "Bill Paid" : isInsufficient ? "Insufficient Balance" : "Pay Bill"}
+          {billData.paid
+            ? "Paid"
+            : isInsufficient
+              ? "Insufficient Balance"
+              : "Pay Now"}
         </button>
       </div>
     </div>

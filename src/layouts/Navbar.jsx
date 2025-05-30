@@ -8,17 +8,15 @@ import Loading from "../components/Loading";
 
 const Navbar = () => {
   const { balance, user, logOut } = useContext(AuthContext);
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  useEffect(() => {}, [user]);
 
   return (
     <header className="bg-primary">
-      <div className="navbar shadow-sm container mx-auto h-24 pl-5">
+      <div className="navbar container mx-auto h-24 pl-5 shadow-sm">
         <div className="navbar-start">
           {/* Mobile Menu */}
           {user ? (
-            <div className="navbar-start lg:hidden shadow-sm">
+            <div className="navbar-start shadow-sm lg:hidden">
               <div className="flex gap-2">
                 <div className="dropdown dropdown-end">
                   <div
@@ -30,21 +28,21 @@ const Navbar = () => {
                       <img
                         alt="User Avatar"
                         src={`${user?.photoURL || avatar}`}
-                        className="w-10 h-10 rounded-full"
+                        className="h-10 w-10 rounded-full"
                       />
                     </div>
                   </div>
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-primary rounded-xl z-1 mt-10 mr-[-171px] min-w-52 w-auto p-5 shadow font-bold text-white "
+                    className="menu menu-sm dropdown-content bg-primary z-1 mt-10 mr-[-171px] w-auto min-w-52 rounded-xl p-5 font-bold text-white shadow"
                   >
                     <li>
-                      <a className="justify-between cursor-not-allowed text-secondary">
+                      <a className="text-secondary cursor-not-allowed justify-between">
                         {user.email}
                       </a>
                     </li>
                     <li>
-                      <a className="justify-between cursor-not-allowed">
+                      <a className="cursor-not-allowed justify-between">
                         My Balance :
                         <span className="badge text-yellow">
                           &#2547; {balance}
@@ -89,19 +87,19 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-primary rounded-xl z-1 mt-10 w-56 p-5 shadow gap-2"
+                className="menu menu-sm dropdown-content bg-primary z-1 mt-10 w-56 gap-2 rounded-xl p-5 shadow"
               >
                 {navLinks}
                 <div className="navbar-end justify-between gap-7 lg:hidden">
                   <Link
                     to="/register"
-                    className="btn btn-accent rounded-full bg-yellow"
+                    className="btn btn-accent bg-yellow rounded-full"
                   >
                     Register
                   </Link>
                   <Link
                     to="/login"
-                    className="btn text-white border border-accent rounded-full hover:bg-accent/30"
+                    className="btn border-accent hover:bg-accent/30 rounded-full border text-white"
                   >
                     Login
                   </Link>
@@ -109,14 +107,14 @@ const Navbar = () => {
               </ul>
             </div>
           )}
-          <img className="w-24 h-24 max-lg:hidden" src={logo} alt="logo" />
+          <img className="h-24 w-24 max-lg:hidden" src={logo} alt="logo" />
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal gap-5">{navLinks}</ul>
         </div>
         {/* Navbar End */}
         {user ? (
-          <div className="hidden lg:navbar-end shadow-sm ">
+          <div className="lg:navbar-end hidden shadow-sm">
             <div className="flex gap-2">
               <div className="dropdown dropdown-end">
                 <div
@@ -128,21 +126,21 @@ const Navbar = () => {
                     <img
                       alt="User Avatar"
                       src={`${user?.photoURL || avatar}`}
-                      className="w-10 h-10 rounded-full"
+                      className="h-10 w-10 rounded-full"
                     />
                   </div>
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-primary rounded-xl z-1 mt-9 min-w-52 w-auto p-5 shadow font-bold text-white "
+                  className="menu menu-sm dropdown-content bg-primary z-1 mt-9 w-auto min-w-52 rounded-xl p-5 font-bold text-white shadow"
                 >
                   <li>
-                    <a className="justify-between cursor-not-allowed text-secondary">
+                    <a className="text-secondary cursor-not-allowed justify-between">
                       {user.email}
                     </a>
                   </li>
                   <li>
-                    <a className="justify-between cursor-not-allowed">
+                    <a className="cursor-not-allowed justify-between">
                       My Balance :
                       <span className="badge text-yellow">
                         &#2547; {balance}
@@ -166,13 +164,13 @@ const Navbar = () => {
           <div className="navbar-end gap-2.5 max-lg:hidden">
             <Link
               to="/register"
-              className="myBtn rounded-full bg-yellow animate-pulse"
+              className="myBtn bg-yellow animate-pulse rounded-full"
             >
               Register
             </Link>
             <Link
               to="/login"
-              className="myBtn rounded-full border border-accent hover:bg-accent/30"
+              className="myBtn border-accent hover:bg-accent/30 rounded-full border"
             >
               Login
             </Link>
@@ -180,7 +178,7 @@ const Navbar = () => {
         )}
         {/* // Navbar End */}
         <div className="navbar-end gap-2.5 lg:hidden">
-          <img className="w-24 h-24" src={logo} alt="logo" />
+          <img className="h-24 w-24" src={logo} alt="logo" />
         </div>
       </div>
     </header>

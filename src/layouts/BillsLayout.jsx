@@ -23,14 +23,10 @@ const BillsLayout = () => {
         <select
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
-          className="border rounded px-10 py-1 font-extrabold text-accent"
+          className="text-accent rounded border px-10 py-1 font-extrabold max-xl:mt-5"
         >
           {billTypes.map((type) => (
-            <option
-              key={type}
-              value={type}
-              className="text-primary font-bold"
-            >
+            <option key={type} value={type} className="text-primary font-bold">
               {type.charAt(0).toUpperCase() + type.slice(1)}
             </option>
           ))}
