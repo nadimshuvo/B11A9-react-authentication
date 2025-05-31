@@ -13,7 +13,6 @@ const Profile = () => {
     job: "",
   });
   const { updateUser, setUser, user } = useContext(AuthContext);
-  console.log(user.photoURL);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
