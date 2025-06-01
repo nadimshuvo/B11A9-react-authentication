@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import logo from "../assets/billLagbe-sm.jpg";
 import navLinks from "../utilis/navLinks";
 import { Link } from "react-router";
@@ -8,7 +8,6 @@ import Loading from "../components/Loading";
 
 const Navbar = () => {
   const { balance, user, logOut } = useContext(AuthContext);
-  useEffect(() => {}, [user]);
 
   return (
     <header className="bg-primary">

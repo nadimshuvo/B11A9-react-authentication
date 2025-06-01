@@ -11,13 +11,15 @@ const SingleBill = ({
       className="group perspective max-xl:px-2.5"
       style={{ perspective: "1000px" }}
     >
-      <div className="single-bill border-primary/10 group-hover:shadow-3xl mb-20 flex transform items-center justify-between rounded-2xl border bg-white p-20 shadow-2xl transition-transform duration-500 group-hover:scale-95 group-hover:rotate-[deg] max-xl:flex-col max-xl:gap-3.5 max-xl:p-9">
+      <div className="single-bill border-primary/10 group-hover:shadow-3xl mb-20 flex transform items-center justify-between rounded-2xl border bg-white p-20 shadow-2xl transition-transform duration-500 group-hover:scale-95 group-hover:rotate-[deg] max-xl:flex-col max-xl:gap-3.5 max-xl:p-10">
         <img
           src={icon}
           alt="desco Icon"
           className="border-yellow/25 h-52 w-52 overflow-hidden rounded-2xl border object-center transition-transform duration-500 group-hover:scale-125"
         />
-        <h3 className="text-green text-3xl font-bold">{organization}</h3>
+        <h3 className="text-green text-3xl font-bold max-xl:mt-7">
+          {organization}
+        </h3>
         <p className="text-accent font-bold italic">{bill_type}</p>
         <p>
           Amount: <span className="text-yellow font-black">{amount}</span> Taka
