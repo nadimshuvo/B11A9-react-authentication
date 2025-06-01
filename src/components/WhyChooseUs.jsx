@@ -1,6 +1,10 @@
 import React from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import securePaymentIcon from "/src/assets/secure-payment.png";
+import serviceIcon from "/src/assets/service.png";
+import supportIcon from "/src/assets/24-7-support.png";
+import billTrackingIcon from "/src/assets/bill-tracking.png";
 
 const container = {
   hidden: { opacity: 0 },
@@ -27,22 +31,22 @@ const cardVariants = {
 
 const items = [
   {
-    icon: "/src/assets/secure-payment.png",
+    icon: securePaymentIcon,
     title: "সিকিউর পেমেন্ট",
     desc: "আপনার সব লেনদেন ১০০% নিরাপদ",
   },
   {
-    icon: "/src/assets/service.png",
+    icon: serviceIcon,
     title: "তাৎক্ষণিক প্রসেসিং",
     desc: "নির্দিষ্ট সময়ের মধ্যে বিল প্রসেস হয়",
   },
   {
-    icon: "/src/assets/24-7-support.png",
+    icon: supportIcon,
     title: "২৪/৭ সাপোর্ট",
     desc: "যেকোনো সমস্যায় দ্রুত সমাধান",
   },
   {
-    icon: "/src/assets/bill-tracking.png",
+    icon: billTrackingIcon,
     title: "বিল ট্র্যাকিং",
     desc: "আপনার সব বিলের হিসাব এক জায়গায়",
   },
