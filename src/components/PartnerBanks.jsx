@@ -16,3 +16,4 @@ const PartnerBanks = () => {
 }
 
 export default PartnerBanks
+// Our partner company logo
