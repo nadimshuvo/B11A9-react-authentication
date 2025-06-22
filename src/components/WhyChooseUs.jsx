@@ -57,7 +57,7 @@ const WhyChooseUs = () => {
     <section className="mt-20 bg-gray-100 py-60">
       <div className="mx-auto max-w-6xl px-4">
         <h2 className="mb-15 text-center text-3xl font-bold">
-          আমাদের সার্ভিস সুবিধা
+          আমাদের সার্ভিস সুবিধা !
         </h2>
         <motion.div
           className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
